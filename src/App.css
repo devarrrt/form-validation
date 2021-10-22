@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -8,10 +7,11 @@
 }
 
 .invalid {
-  border: 1px solid red !important;
+  border: 1px solid rgb(159, 16, 16) !important;
+  box-shadow: 4px 4px 18px 0px rgba(103, 21, 21, 0.2) !important;
 }
 
-.text-danger{
+.text-danger {
   color: rgb(159, 16, 16);
 }
 
@@ -26,11 +26,11 @@ textarea {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  text-align: center;
 }
 
 h1 {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .form {
@@ -58,7 +58,7 @@ label {
   color: rgb(100, 100, 100)
 }
 
-input{
+input {
   font-size: 17px;
 }
 
@@ -82,7 +82,8 @@ textarea {
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
 }
-.btn-submit:hover{
-   background-color: rgb(83, 104, 100);
-   color: aliceblue;
+
+.btn-submit:hover {
+  background-color: rgb(83, 104, 100);
+  color: aliceblue;
 }

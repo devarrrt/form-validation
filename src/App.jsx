@@ -26,50 +26,112 @@ const App = () => {
             <label>Name:</label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${errors.name && 'invalid'}`}
               {...register("name", { required: "Name is required field" })}
+              onKeyUp={() => {
+                trigger("name");
+              }}
             />
-            <small className="text-danger">Required</small>
+            {errors.name && (
+              <small className="text-danger">{errors.name.message} </small>
+            )}
           </div>
 
           <div className="form-group">
             <label>Age:</label>
             <input
               type="text"
-              className="form-control"
-              {...register("age", { required: "Age is required field" })}
+              className={`form-control ${errors.age && 'invalid'}`}
+              {...register("age", {
+                required: "Age is required field",
+                min: {
+                  value: 13,
+                  message: "Minimum Required age is 13",
+                },
+                max: {
+                  value: 65,
+                  message: "Maximum allowed age is 65",
+                },
+                pattern: {
+                  value: /^[0-9]*$/,
+                  message: "Only numbers are allowed",
+                }
+              }
+              )}
+              onKeyUp={() => {
+                trigger("age");
+              }}
             />
-            <small className="text-danger">Required</small>
+            {errors.age && (
+              <small className="text-danger">{errors.age.message} </small>
+            )}
           </div>
 
           <div className="form-group">
             <label>Email:</label>
             <input
               type="email"
-              className="form-control"
-              {...register("email", { required: "Email is required field" })}
+              className={`form-control ${errors.email && 'invalid'}`}
+              {...register("email", {
+                required: "Email is required field",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
+                }
+              })}
+              onKeyUp={() => {
+                trigger("email");
+              }}
             />
-            <small className="text-danger">Required</small>
+            {errors.email && (
+              <small className="text-danger">{errors.email.message}</small>
+            )}
           </div>
 
           <div className="form-group">
             <label>Phone:</label>
             <input
               type="text"
-              className="form-control"
-              {...register("phone", { required: "Phone is required field" })}
+              className={`form-control ${errors.phone && 'invalid'}`}
+              {...register("phone", {
+                required: "Phone is required field",
+                pattern: {
+                  value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                  message: "Invalid phone no",
+                },
+              })}
+              onKeyUp={() => {
+                trigger("phone");
+              }}
             />
-            <small className="text-danger">Required</small>
+            {errors.phone && (
+              <small className="text-danger">{errors.phone.message}</small>
+            )}
           </div>
-
           <div className="form-group">
-
+            <label className="col-form-label">Message:</label>
+            <textarea
+              className={`form-control ${errors.message && 'invalid'}`}
+              {...register("message", {
+                required: "Message is Required",
+                minLength: {
+                  value: 10,
+                  message: "Minimum Required length is 10",
+                },
+                maxLength: {
+                  value: 50,
+                  message: "Maximum allowed length is 50 ",
+                }
+              })}
+              onKeyUp={() => {
+                trigger("message");
+              }}
+            />
+            {errors.message && (
+              <small className="text-danger">{errors.message.message}</small>
+            )}
           </div>
-          <label className="col-form-label">Message:</label>
-          <textarea
-            className="form-control"
-            {...register("message", { required: "Message is Required" })}
-          />
+
           <input
             type="submit"
             className="btn-submit"
